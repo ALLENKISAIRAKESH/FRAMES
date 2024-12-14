@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Frames</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+            color: #333;
+        }
+
+        h3 {
+            text-align: center;
+            margin: 20px 0;
+            color: #444;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .links {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .links li {
+            margin: 10px 0;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #fff;
+            background: #ff6f61;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #ff8e80;
+            transform: scale(1.05);
+        }
+
+        .frames {
+            flex: 2 1 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .frame {
+            border: 3px solid #ff6f61;
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 20px;
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .frame:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .frame::before {
+            content: "📋 ";
+            font-size: 18px;
+            color: #ff6f61;
+        }
+
+        .frame.empty::before {
+            content: "📝 ";
+        }
+    </style>
+</head>
+<body>
+    <h3>Interactive Dynamic Frames</h3>
+    <div class="container">
+        <div class="links">
+            <ul>
+                <li><a href="#" onclick="fillFrame('frame1', 'Networks: Connecting the world with efficient communication.')">Networks</a></li>
+                <li><a href="#" onclick="fillFrame('frame2', 'Simulation: A journey through virtual realities.')">Simulation</a></li>
+            </ul>
+        </div>
+        <div class="frames">
+            <div id="frame1" class="frame empty">Click "Networks" to load exciting content!</div>
+            <div id="frame2" class="frame empty">Click "Simulation" to explore virtual possibilities!</div>
+        </div>
+    </div>
+
+    <script>
+        function fillFrame(frameId, content) {
+            const frame = document.getElementById(frameId);
+            frame.textContent = content;
+            frame.classList.remove('empty');
+        }
+    </script>
+</body>
+</html>
